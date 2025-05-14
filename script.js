@@ -1,33 +1,22 @@
-// script.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "your-key",
-  authDomain: "your-app.firebaseapp.com",
-  databaseURL: "https://your-app.firebaseio.com",
-  projectId: "your-id",
-  appId: "your-app-id",
+  apiKey: "AIzaSyASixrWVG6fpUAPSgV7KpZRlx7emGY7bBU",
+  authDomain: "login-app-f2634.firebaseapp.com",
+  databaseURL: "https://login-app-f2634-default-rtdb.firebaseio.com",
+  projectId: "login-app-f2634",
+  storageBucket: "login-app-f2634.firebasestorage.app",
+  messagingSenderId: "763324936906",
+  appId: "1:763324936906:web:0d1558b482b6ea77147a33",
+  measurementId: "G-YG1GQEYRFW"
 };
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
-
-// Login logic
-document.getElementById("login-btn").addEventListener("click", () => {
-  const email = loginEmail.value;
-  const password = loginPassword.value;
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => alert("Login successful!"))
-    .catch(err => alert("Login failed: " + err.message));
-});
-
-// Form submit logic
-document.getElementById("feedback-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const message = document.getElementById("feedback").value;
-  push(ref(db, "feedbacks"), { message })
-    .then(() => alert("Message saved!"))
-    .catch(err => alert("Failed to save: " + err.message));
-});
+const analytics = getAnalytics(app);
